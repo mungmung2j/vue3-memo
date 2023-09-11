@@ -43,6 +43,7 @@ export default {
   li {
     padding: 15px;
     margin: 5px;
+    border: 1px solid #eee;
   }
 }
 </style>
