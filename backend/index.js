@@ -4,10 +4,15 @@ const port = 3000;
 
 const memos = ["메모1 내용", "메모2 내용", "메모3 내용"];
 
-app.get("/memos", (req, res) => {
+app.get("/api/memos", (req, res) => {
+  res.send(memos);
+});
+
+app.post("/api/memos", (req, res) => {
+  memos.push("추가 내용");
   res.send(memos);
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });

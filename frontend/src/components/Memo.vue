@@ -11,16 +11,24 @@
 
 <script>
 import { reactive } from "vue";
+import axios from "axios";
 
 export default {
   setup() {
     const state = reactive({
-      data: ["메모 1 내용", "메모 2 내용", "메모 3 내용", "메모 4 내용"],
+      data: [],
     });
 
     const add = () => {
-      state.data.push("추가된 메모 내용");
+      //state.data.push("추가된 메모 내용");
+      axios.post("/api/memos").then((res) => {
+        state.data = res.data;
+      });
     };
+
+    axios.get("/api/memos").then((res) => {
+      state.data = res.data;
+    });
 
     return { state, add };
   },
