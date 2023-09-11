@@ -1,14 +1,14 @@
 <template>
-  <div class="ground">I am Ground</div>
   <Header/>
-  <div>Content</div>
+  <Memo/>
   <Footer/>
 </template>
 
 <script>
 import Header from './Header.vue';
 import Footer from './Footer.vue';
+import Memo from './Memo.vue';
 export default{
-  components:{Header, Footer}
+  components:{Header, Footer, Memo}
 }
 </script>
