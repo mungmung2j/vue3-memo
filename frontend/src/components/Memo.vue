@@ -4,7 +4,9 @@
       <button class="btn btn-primary" @click="add()">+ 추가</button>
     </div>
     <ul>
-      <li v-for="(d, idx) in state.data" :key="idx">{{ d }}</li>
+      <li v-for="(d, idx) in state.data" :key="idx" @click="edit(idx)">
+        {{ d }}
+      </li>
     </ul>
   </div>
 </template>
@@ -20,8 +22,17 @@ export default {
     });
 
     const add = () => {
+      const content = prompt("내용을 입력해주세요.");
       //state.data.push("추가된 메모 내용");
-      axios.post("/api/memos").then((res) => {
+      axios.post("/api/memos", { content }).then((res) => {
+        state.data = res.data;
+      });
+    };
+
+    const edit = (idx) => {
+      const content = prompt("내용을 입력해주세요", state.data[idx]);
+      console.log(content);
+      axios.put("/api/memos/" + idx, { content }).then((res) => {
         state.data = res.data;
       });
     };
@@ -30,7 +41,7 @@ export default {
       state.data = res.data;
     });
 
-    return { state, add };
+    return { state, add, edit };
   },
 };
 </script>
