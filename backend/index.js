@@ -18,6 +18,13 @@ app.post("/api/memos", (req, res) => {
   res.send(memos);
 });
 
+app.put("/api/memos/:idx", (req, res) => {
+  memos[req.parms.idx] = req.body.content;
+  res.send(memos);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+app.use(express.urlencoded({ extended: true }));
